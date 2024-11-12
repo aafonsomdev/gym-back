@@ -1,7 +1,8 @@
 import { RequestHandler, Router } from 'express';
 import { check } from 'express-validator';
-import { validateFields } from '../helpers/validateFields';
-import { register } from '../controllers/auth';
+import { validateFields } from '../middlewares/validate-fields';
+import { login, refreshToken, register } from '../controllers/auth';
+import { validateJwt } from '../middlewares/validate-jwt';
 // import { getCostFromApi, getDiaryCost } from '../controllers/operations';
 
 const router: Router = Router();
@@ -19,16 +20,16 @@ router.post(
   register
 );
 
-/* router.post(
+router.post(
   '/',
   [
     check('email', 'El email es obligatorio').isEmail(),
     check('password', 'El password no debe venir vacío').not().isEmpty(),
-    validateFields,
+    validateFields as RequestHandler,
   ],
-  loginUsuario
+  login
 );
- */
-// router.get('/renew', validarJWT, revalidarToken);
+
+router.get('/refresh', validateJwt as RequestHandler, refreshToken);
 
 export default router;
