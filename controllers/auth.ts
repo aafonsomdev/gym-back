@@ -79,16 +79,16 @@ const login = async (req: Request, res: Response) => {
 };
 
 const refreshToken = async (req: Request, res: Response) => {
-  const { uid, name } = req.body;
+  const { userId, userName } = req.body;
 
   //generar un nuevo JWT y retornarlo en la petición
-  const token = await generateJwt(uid, name);
+  const token = await generateJwt(userId, userName);
 
   res.json({
     ok: true,
     token,
-    uid,
-    name,
+    userId,
+    userName,
   });
 };
 

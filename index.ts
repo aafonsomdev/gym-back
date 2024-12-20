@@ -3,6 +3,7 @@ import dotenv from 'dotenv';
 import cors from 'cors';
 
 import auth from './routes/auth';
+import training from './routes/training';
 import { dbConnection } from './database/config';
 
 //For env File
@@ -23,6 +24,7 @@ app.use(express.json());
 
 // Rutas
 app.use('/api/auth', auth);
+app.use('/api/training', training);
 
 app.listen(port, () => {
   console.log(`Server is Fire at http://localhost:${port}`);

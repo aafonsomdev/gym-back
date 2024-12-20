@@ -20,8 +20,8 @@ export const validateJwt = (
   try {
     const { uid, name } = jwt.verify(token, process.env.SECRET_JWT_SEED);
 
-    req.body.uid = uid;
-    req.body.name = name;
+    req.body.userId = uid;
+    req.body.userName = name;
   } catch (error) {
     console.log(error);
     return res.status(401).json({
