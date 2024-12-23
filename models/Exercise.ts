@@ -9,6 +9,9 @@ const ExerciseSchema = new Schema({
     type: String,
     required: true,
   },
+  isPublic: {
+    type: Boolean,
+  },
 });
 
 export default model('Exercise', ExerciseSchema);
